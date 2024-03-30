@@ -1,0 +1,29 @@
+.container {
+  background-color: #181818;
+  color: #fff;
+  margin: 0 auto;
+  padding: 96px 50px;
+  max-width: 960px;
+  min-height: calc(100vh - 60px);
+
+  @media (max-width: 520px) {
+    // スマホ用スタイル (520px以下)
+    padding: 96px 24px;
+    // フッターの高さを差し引いた高さを指定
+    min-height: calc(100vh - 202px);
+  }
+}
+
+.content-section {
+  margin-bottom: 40px;
+}
+
+.fullwidth-image {
+  height: auto;
+  width: 100%;
+}
+
+.page-title {
+  font-size: 32px;
+  margin-bottom: 24px;
+}

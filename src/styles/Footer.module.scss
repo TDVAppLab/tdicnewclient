@@ -1,0 +1,143 @@
+.footer {
+  display: flex;
+  align-items: center;
+  background-color: #181818;
+  color: white;
+}
+
+.footerInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1366px;
+  padding: 0 50px;
+  margin: 0 auto;
+}
+
+.footerStart {
+  display: flex;
+  align-items: center;
+  margin: 12px 0;
+}
+
+.footerCenter {
+  display: flex;
+  align-items: center;
+  margin: 12px 0;
+}
+
+.footerEnd {
+  display: flex;
+  align-items: center;
+  margin: 12px 0;
+}
+
+.footerNaviList {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.footerNaviItem {
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  color: #fff;
+  transition: all 0.3s ease-out 0s;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    color: inherit;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+  }
+}
+
+.footerSnsList {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.footerSnsItem {
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  color: #fff;
+  transition: all 0.3s ease-out 0s;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    color: inherit;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+  }
+
+  svg {
+    font-size: 20px;
+    margin-left: 6px;
+    color: inherit;
+    transition: inherit;
+
+    &:hover {
+      opacity: inherit;
+    }
+  }
+}
+
+.footerLinkIcon {
+  font-size: 16px;
+  margin-left: 6px;
+  color: inherit;
+  transition: inherit;
+
+  &:hover {
+    opacity: inherit;
+  }
+}
+
+.footerCopyRight {
+  color: #d1f5ff;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1;
+  margin: 0;
+}
+
+// For Tablet
+@media screen and (max-width: 960px) {
+  .footerInner {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 24px 50px;
+  }
+}
+
+// For SmartPhone
+@media screen and (max-width: 520px) {
+  .footerInner {
+    padding: 24px;
+  }
+}

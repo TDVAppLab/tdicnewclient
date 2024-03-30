@@ -1,0 +1,341 @@
+.header {
+  //position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  height: 72px;
+  width: 100vw;
+  background-color: #181818;
+}
+
+.headerInner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1366px;
+  padding: 0 50px;
+  margin: 0 auto;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.headerLogo {
+  display: flex;
+  align-items: center;
+
+  a {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1;
+    text-decoration: none;
+  }
+}
+
+.headerLang {
+  display: flex;
+}
+
+.headerLangLink {
+  position: relative;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: underline;
+  padding: 12px 8px;
+  transition: all 0.2s;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+
+  &.nuxt-link-exact-active {
+    text-decoration: none;
+    pointer-events: none;
+  }
+
+  &:first-child {
+    &::after {
+      content: '/';
+      display: block;
+      font-size: 14px;
+      position: absolute;
+      right: -2px;
+      top: 11px;
+    }
+  }
+}
+
+.headerMenuTrigger {
+  position: absolute;
+  z-index: 11;
+  top: 4px;
+  left: auto;
+  right: 24px;
+  width: 20px;
+  height: 16px;
+  appearance: none;
+  padding: 0;
+  border: none;
+  background: transparent;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.headerMenuTriggerLine {
+  width: 100%;
+  height: 2px;
+  transition: 0.35s cubic-bezier(0.79, 0.17, 0.15, 0.96);
+  background-color: #fff;
+  margin-bottom: 5px;
+}
+
+.headerMenu {
+  display: none;
+
+  &.isOpen {
+    .headerMenuTriggerLine {
+      &:nth-child(1) {
+        transform: translate3d(0, 7px, 0) rotate(-135deg);
+      }
+
+      &:nth-child(2) {
+        transform: rotate(-90deg);
+        opacity: 0;
+      }
+
+      &:nth-child(3) {
+        transform: translate3d(0, -7px, 0) rotate(-45deg);
+      }
+    }
+  }
+}
+
+.headerMenuContent {
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  z-index: 10;
+  width: 300px;
+  background-color: #181818;
+  border-left: 1px solid #3e3e3e;
+}
+
+.headerMenuTitle {
+  color: #fff;
+  font-size: 16px;
+  margin: 0 0 0 16px;
+  padding: 28px 0;
+}
+
+.headerMenuNavList {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 16px 0;
+  padding: 0;
+}
+
+.headerMenuNaviItem {
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 0 16px;
+  border-bottom: 1px solid #3e3e3e;
+
+  a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+    text-decoration: none;
+    padding: 12px 16px 12px 8px;
+    border-radius: 4px;
+
+    &.nuxt-link-exact-active {
+      color: rgba(50, 180, 215, 1);
+    }
+  }
+}
+
+.headerMenuSnsList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 16px 0;
+  padding: 0;
+}
+
+.headerMenuSnsItem {
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  color: #fff;
+  transition: all 0.2s;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    color: inherit;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+  }
+
+  svg {
+    font-size: 20px;
+    margin-left: 6px;
+    color: inherit;
+    transition: inherit;
+
+    &:hover {
+      opacity: inherit;
+    }
+  }
+}
+
+.headerMenuLang {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 16px 0;
+}
+
+.headerMenuLangLink {
+  position: relative;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: underline;
+  padding: 12px 8px;
+  transition: all 0.2s;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+
+  &.nuxt-link-exact-active {
+    text-decoration: none;
+    pointer-events: none;
+  }
+
+  &:first-child {
+    &::after {
+      content: '/';
+      display: block;
+      font-size: 14px;
+      position: absolute;
+      right: -2px;
+      top: 11px;
+    }
+  }
+}
+
+.headerNav {
+  display: flex;
+  align-items: center;
+}
+
+.headerNavList {
+  display: flex;
+  align-items: center;
+  margin: 0 16px 0 0;
+  padding: 0;
+}
+
+.headerNavItem {
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+
+  a {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    padding: 8px 12px;
+    transition: all 0.2s;
+
+    &:hover {
+      opacity: 0.7;
+      cursor: pointer;
+    }
+
+    &.nuxt-link-exact-active {
+      color: rgba(50, 180, 215, 1);
+    }
+  }
+}
+
+// For Table
+@media screen and (max-width: 960px) {
+  .headerNav {
+    display: none;
+  }
+
+  .headerMenu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// For SmartPhone
+@media screen and (max-width: 520px) {
+  .headerInner {
+    padding: 0 24px;
+  }
+
+  .headerMenuContent {
+    width: 65%;
+  }
+
+  .headerMenuNaviItem a {
+    font-size: 14px;
+  }
+}
+
+/** ヘッダーメニューの表示アニメーション */
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.2s ease-out;
+}
+
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}

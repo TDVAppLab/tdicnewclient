@@ -1,0 +1,107 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+//環境変数「DATABASE_URL」に設定された値をDB接続用文字列として読み込む。
+//(環境変数の中身を変更することで、ソースコード側は変更せずに開発・本番などDB接続先を変更に対応できる)
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+//認証機能用のテーブル(アカウント)
+model Account {
+  id                       String  @id @default(cuid()) @map("_id")
+  userId                   String
+  type                     String
+  provider                 String
+  providerAccountId        String  @map("provider_account_id")
+  refresh_token            String?
+  refresh_token_expires_in Int?
+  access_token             String?
+  expires_at               Int?
+  token_type               String?
+  scope                    String?
+  id_token                 String?
+  session_state            String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+//認証機能用のテーブル(ユーザー)
+model User {
+  id            String    @id @default(cuid()) @map("_id")
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime? @map("email_verified")
+  image         String?
+  accounts      Account[]
+
+  @@map("users")
+}
+
+// Multiobjective Text Table
+// Updates用のテーブル(そのほか各種更新に使えるように若干抽象的な名前にしてある)
+model MultiobjectiveText {
+  id          String   @id @default(cuid()) @map("_id") // ID
+  type        String // ID
+  titleEn     String   @map("title_en") // 英語版タイトル
+  titleJp     String   @map("title_jp") // 日本語版タイトル
+  scriptEn    String   @map("script_en") // 英語版スクリプト
+  scriptJp    String   @map("script_jp") // 日本語版スクリプト
+  status      String // ステータス
+  displayDate String   @map("display_date") // 表示用の「更新日時」
+  createdAt   DateTime @default(now()) @map("created_at") // 作成日時(UTC)
+  updatedAt   DateTime @updatedAt @map("updated_at") // 更新日時(UTC)
+
+  @@index([displayDate], name: "displaydateIndex")
+  @@map("multiobjective_text")
+}
+
+// ●TLEデータを格納するテーブル
+// @satelliteId カタログID
+// @objectname オブジェクト名
+// @line1 TLE（2行形式）の1行目
+// @line2 TLE（2行形式）の2行目
+
+//model Tlestring {
+//  id         String @id @default(auto()) @map("_id") @db.ObjectId
+//  noradcatid Int    @unique
+//  objectname String
+//  line1      String
+//  line2      String
+//}
+
+model Satellite {
+  id                 String    @id @default(auto()) @map("_id") @db.ObjectId
+  name               String // 衛星名
+  noradCatalogNumber Int       @unique // NORADカタログナンバー
+  tleObjectName      String? // TLEオブジェクト名
+  tleLine1           String // TLE Line1
+  tleLine2           String // TLE Line2
+  syncedAt           DateTime? // 最終更新日時
+  createdAt          DateTime  @default(now()) // 登録日時
+  updatedAt          DateTime  @updatedAt // 更新日時
+}
+
+// ●各種アプリケーションの実行ログを格納するテーブル
+// @id ID
+// @key ログ名（検索用）
+// @message 各種メッセージ
+// @createdAt 登録日時
+// @updatedAt 更新日時
+model ApplicationLog {
+  id        String   @id @default(cuid()) @map("_id")
+  key       String
+  message   String
+  createdAt DateTime @default(now()) // 登録日時
+  updatedAt DateTime @updatedAt // 更新日時
+
+  @@index([key])
+}

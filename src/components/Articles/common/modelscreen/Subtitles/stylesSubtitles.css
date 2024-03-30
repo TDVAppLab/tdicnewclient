@@ -1,0 +1,32 @@
+
+
+.html-subtitle-onscreen {
+  margin-left: -400px;
+  margin-top: 50px;
+  transform: translate(0%, -10%);
+  text-align: center;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  max-width: 1200px;
+}
+
+
+
+.html-subtitle {
+  margin-left: 0px;
+  margin-top: 0px;
+  transform: translate(0%, 0%);
+  text-align: left;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 2px 40px 2px 40px;
+  border-radius: 5px;
+}
+
+
+.annotation_editmode {
+  outline-color: red;
+  background: rgba(0, 0, 255, 0.8);
+}
