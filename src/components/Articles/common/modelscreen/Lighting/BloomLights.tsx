@@ -96,7 +96,9 @@ const Effects: FC = () => {
 
 	return (
 		<EffectComposer>
-			<>{lightMesh && datas.enabled && <GodRays sun={lightMesh.current!} {...datas} blur={true} />}</>
+			<>{lightMesh && datas.enabled && <GodRays sun={lightMesh.current!} {...datas} 
+			//@ts-ignore
+			blur={true} />}</>
 		</EffectComposer>
 	)
 }

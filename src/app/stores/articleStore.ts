@@ -1,6 +1,7 @@
 import {  makeAutoObservable, runInAction } from "mobx";
+
 import agent from "../api/agent";
-import { Article, ArticleScreenInfoUpdDto } from "../models/article";
+import type { Article, ArticleScreenInfoUpdDto } from "../models/article";
 
 
 export default class ArticleStore {
@@ -18,6 +19,7 @@ export default class ArticleStore {
         this.articleRegistry.clear();
         try {
             const articles = await agent.Articles.list();
+            //@ts-ignore
             articles.forEach(article => {
                 this.setArticle(article);
             })

@@ -1,6 +1,7 @@
 import {  makeAutoObservable, runInAction } from "mobx";
+
 import agent from "../api/agent";
-import { Light } from "../models/Light";
+import type { Light } from "../models/Light";
 
 
 export default class LightStore {
@@ -30,6 +31,7 @@ export default class LightStore {
         this.lightRegistry.clear();
         try {
             const lights = await agent.Lights.list(id_article);
+            //@ts-ignore
             lights.forEach(light => {
                 this.setLight(light);
             })

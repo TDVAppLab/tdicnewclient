@@ -1,7 +1,8 @@
 import { makeAutoObservable, runInAction } from "mobx";
-import { Vector3 } from "three";
+import type { Vector3 } from "three";
+
 import agent from "../api/agent";
-import { Annotation } from "../models/Annotation";
+import type { Annotation } from "../models/Annotation";
 
 export default class AnnotationStore {
     annotationRegistry = new Map<number, Annotation>();
@@ -30,6 +31,7 @@ export default class AnnotationStore {
         this.annotationRegistry.clear();
         try {
             const annotation = await agent.Annotations.list(id_article);
+            //@ts-ignore
             annotation.forEach(annotation => {
                 this.setAnnotation(annotation);
             })

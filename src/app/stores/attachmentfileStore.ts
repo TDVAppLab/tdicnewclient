@@ -1,6 +1,7 @@
 import {  makeAutoObservable, runInAction } from "mobx";
+
 import agent from "../api/agent";
-import { Attachmentfile } from "../models/attachmentfile";
+import type { Attachmentfile } from "../models/attachmentfile";
 
 
 export default class AttachmentfileStore {
@@ -43,6 +44,7 @@ export default class AttachmentfileStore {
         this.AttachmentfileRegistry.clear();
         try {
             const attachmentfiles = await agent.Attachmentfiles.list();
+            //@ts-ignore
             attachmentfiles.forEach(attachmentfile => {
                 this.setAttachmentfile(attachmentfile);
             })

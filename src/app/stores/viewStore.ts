@@ -1,7 +1,8 @@
 import {  makeAutoObservable, runInAction } from "mobx";
+
 import agent from "../api/agent";
-import { View } from "../models/view";
-import { OptionBase } from "../models/Optionbase";
+import type { OptionBase } from "../models/Optionbase";
+import type { View } from "../models/view";
 
 export default class ViewStore {
     viewRegistry = new Map<number, View>();
@@ -29,6 +30,7 @@ export default class ViewStore {
         this.selectedView = undefined;
         try {
             const views = await agent.Views.list(id_article);
+            //@ts-ignore
             views.forEach(view => {
                 this.setView(view);
             })

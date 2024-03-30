@@ -53,6 +53,7 @@ function ModelfileUploader() {
         .test(
           "name",
           "File not Selected",
+          //@ts-ignore
           value => value.name !== ""
         )
 /*        .test(

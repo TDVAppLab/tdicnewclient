@@ -1,7 +1,8 @@
 import {  makeAutoObservable, runInAction } from "mobx";
+
 import agent from "../api/agent";
-import { OptionBase } from "../models/Optionbase";
-import { mArticleStatus } from "../models/mArticleStatus";
+import type { mArticleStatus } from "../models/mArticleStatus";
+import type { OptionBase } from "../models/Optionbase";
 
 
 
@@ -19,6 +20,7 @@ export default class MArticleStatusStore {
         this.statusRegistry.clear();
         try {
             const statuses = await agent.MArticleStatus.list();
+            //@ts-ignore
             statuses.forEach(status => {
                 this.setStatus(status);
             })

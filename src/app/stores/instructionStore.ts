@@ -1,8 +1,9 @@
 import {  makeAutoObservable, runInAction } from "mobx";
+
 import agent from "../api/agent";
-import { Instruction } from "../models/instruction";
-import { InstanceDisplay } from "../models/InstanceDisplay";
-import { InstanceActionExecSetting } from "../models/InstanceActionExecSetting";
+import type { InstanceActionExecSetting } from "../models/InstanceActionExecSetting";
+import type { InstanceDisplay } from "../models/InstanceDisplay";
+import type { Instruction } from "../models/instruction";
 
 export default class InstructionStore {
     instructionRegistry = new Map<number, Instruction>();
@@ -43,6 +44,7 @@ export default class InstructionStore {
         this.instructionRegistry.clear();
         try {
             const instructions = await agent.Instructions.list(id_article);
+            //@ts-ignore
             instructions.forEach(instruction => {
                 this.setInstruction(instruction);
             })

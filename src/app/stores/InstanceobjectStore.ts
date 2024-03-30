@@ -1,8 +1,9 @@
 import { makeAutoObservable, runInAction } from "mobx";
+import type { AnimationClip } from "three";
+
 import agent from "../api/agent";
-import { AnimationClip } from "three";
-import { Instanceobject } from "../models/Instanceobject";
-import { Modelfile } from "../models/ModelFile";
+import type { Instanceobject } from "../models/Instanceobject";
+import type { Modelfile } from "../models/ModelFile";
 
 
 export default class InstanceobjectStore {
@@ -44,11 +45,13 @@ export default class InstanceobjectStore {
             const objects = await agent.Instanceobjects.list(id_article);
             const materialinfo = await agent.Modelfiles.autherList(id_article);
             runInAction(() => {
+                //@ts-ignore
                 objects.forEach(object => {
                     this.setInstanceobject(object);
                     this.modelLoadingRegistry.set(object.id_instance,true);
                 })
                 
+                //@ts-ignore
                 materialinfo.forEach(object => {
                     this.materialInfoRegistry.set(object.id_part,object);
                 })
@@ -101,6 +104,7 @@ export default class InstanceobjectStore {
             await agent.Instanceobjects.update(objects);
             const result_object = await agent.Instanceobjects.list(objects[0].id_article);
             runInAction(() => {
+                //@ts-ignore
                 result_object.forEach(object => {
                     this.setInstanceobject(object);
                 })

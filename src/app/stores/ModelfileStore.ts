@@ -1,7 +1,8 @@
 import {  makeAutoObservable, runInAction } from "mobx";
+
 import agent from "../api/agent";
-import { Modelfile } from "../models/ModelFile";
-import { OptionBase } from "../models/Optionbase";
+import type { Modelfile } from "../models/ModelFile";
+import type { OptionBase } from "../models/Optionbase";
 
 export default class ModelfileStore {
     ModelfileRegistry = new Map<string, Modelfile>();
@@ -18,6 +19,7 @@ export default class ModelfileStore {
         this.ModelfileRegistry.clear();
         try {
             const modelfiles = await agent.Modelfiles.list(is_exclude_used);
+            //@ts-ignore
             modelfiles.forEach(modelfile => {
                 this.setModelfile(modelfile);
             })
@@ -102,6 +104,7 @@ export default class ModelfileStore {
             this.loading = true;
             try {
                 modelfile = await agent.Modelfiles.details(id_part);
+                //@ts-ignore
                 this.setModelfile(modelfile);
                 runInAction(()=>{
                     this.selectedModelfile = modelfile;
