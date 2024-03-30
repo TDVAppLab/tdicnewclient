@@ -1,0 +1,41 @@
+name: Deploy main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+
+    runs-on: ubuntu-22.04
+    timeout-minutes: 300
+    environment: production
+    env:
+      NODE_VERSION: 18.16.0
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: npm
+
+    - name: Cache node_modules
+      uses: actions/cache@v3
+      with:
+        path: ~/.npm
+        key: npm-deps-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: npm-deps-
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Deploy to netlify(main)
+      run: netlify deploy --build --prod
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
